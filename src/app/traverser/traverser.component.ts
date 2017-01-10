@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { Traverser } from './traverser';
 
 @Component({
@@ -13,22 +14,19 @@ export class TraverserComponent implements OnInit {
 
   constructor(
     private traverser: Traverser,
+    private location: Location,
   ) { }
 
   ngOnInit() {
     this.traverser.path.subscribe(location => this.render(location));
+    this.traverser.traverse(this.location.path());
   }
 
   render(location) {
     let context = location.context;
-    let path = location.path;
-    if(path.indexOf('!!') > -1) {
-      this.path = path.split('/!!')[0];
-      this.view = path.split('/!!')[1];
-    } else {
-      this.path = path;
-      this.view = 'view';
-    }
+    this.path = location.path;
+    this.view = location.view;
+    console.log(location.component);
     let className = 'view-' + this.view;
     if(context.type) {
       className += ' type-' + context.type;
