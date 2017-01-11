@@ -10,6 +10,8 @@ import { ListComponent } from './list/list.component';
 import { TraverserOutlet } from './traverser/traverser.directive';
 import { TraverserLink } from './traverser/traverser.link';
 import { Traverser } from './traverser/traverser';
+import { Resolver } from './traverser/resolver';
+import { BasicHttpResolver } from './traverser/http.resolver';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { Traverser } from './traverser/traverser';
     Location,
     { provide: LocationStrategy, useClass: PathLocationStrategy },
     Traverser,
+    { provide: Resolver, useClass: BasicHttpResolver },
   ],
   bootstrap: [AppComponent]
 })
