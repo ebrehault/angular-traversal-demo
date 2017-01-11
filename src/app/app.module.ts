@@ -7,10 +7,13 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { EditComponent } from './edit/edit.component';
 import { ListComponent } from './list/list.component';
+import { FolderEditComponent } from './folder-edit/folder-edit.component';
 import { TraverserOutlet } from './traverser/traverser.directive';
 import { TraverserLink } from './traverser/traverser.link';
 import { Traverser } from './traverser/traverser';
 import { Resolver } from './traverser/resolver';
+import { Marker } from './traverser/marker';
+import { TypeMarker } from './type-marker';
 import { BasicHttpResolver, BACKEND_BASE_URL } from './traverser/http.resolver';
 
 @NgModule({
@@ -20,6 +23,7 @@ import { BasicHttpResolver, BACKEND_BASE_URL } from './traverser/http.resolver';
     ListComponent,
     TraverserOutlet,
     TraverserLink,
+    FolderEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +33,7 @@ import { BasicHttpResolver, BACKEND_BASE_URL } from './traverser/http.resolver';
   entryComponents: [
     EditComponent,
     ListComponent,
+    FolderEditComponent,
   ],
   providers: [
     Location,
@@ -36,6 +41,7 @@ import { BasicHttpResolver, BACKEND_BASE_URL } from './traverser/http.resolver';
     Traverser,
     { provide: Resolver, useClass: BasicHttpResolver },
     { provide: BACKEND_BASE_URL, useValue: 'http://localhost:8080/Plone' },
+    { provide: Marker, useClass: TypeMarker },
   ],
   bootstrap: [AppComponent]
 })

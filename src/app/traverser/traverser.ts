@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Location } from '@angular/common';
 import { BehaviorSubject } from "rxjs/Rx";
 import { Resolver } from './resolver';
+import { Marker } from './marker';
 
 @Injectable()
 export class Traverser {
@@ -12,6 +13,7 @@ export class Traverser {
   constructor(
     private location: Location,
     private resolver: Resolver,
+    private marker: Marker,
   ) {
     this.target = new BehaviorSubject({
       context: {},
@@ -31,13 +33,19 @@ export class Traverser {
     this.location.go(path);
     if(this.views[view]) {
       this.resolver.resolve(contextPath).subscribe(context => {
-        let targetContext = {
-          context: context,
-          path: path,
-          view: view,
-          component: this.views[view]['*'],
-        };
-        this.target.next(targetContext);
+        let marker = this.marker.mark(context);
+        let component = this.views[view][marker];
+        if(!component) {
+          component = this.views[view]['*'];
+        }
+        if(component) {
+          this.target.next({
+            context: context,
+            path: path,
+            view: view,
+            component: component,
+          });
+        }
       });
     }
   }

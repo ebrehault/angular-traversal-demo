@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Traverser } from '../traverser/traverser';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  selector: 'app-folder-edit',
+  templateUrl: './folder-edit.component.html',
+  styleUrls: ['./folder-edit.component.css']
 })
-export class ListComponent implements OnInit {
+export class FolderEditComponent implements OnInit {
 
   private context: any;
 
