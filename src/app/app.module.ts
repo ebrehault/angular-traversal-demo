@@ -11,7 +11,7 @@ import { TraverserOutlet } from './traverser/traverser.directive';
 import { TraverserLink } from './traverser/traverser.link';
 import { Traverser } from './traverser/traverser';
 import { Resolver } from './traverser/resolver';
-import { BasicHttpResolver } from './traverser/http.resolver';
+import { BasicHttpResolver, BACKEND_BASE_URL } from './traverser/http.resolver';
 
 @NgModule({
   declarations: [
@@ -35,6 +35,7 @@ import { BasicHttpResolver } from './traverser/http.resolver';
     { provide: LocationStrategy, useClass: PathLocationStrategy },
     Traverser,
     { provide: Resolver, useClass: BasicHttpResolver },
+    { provide: BACKEND_BASE_URL, useValue: 'http://localhost:8080/Plone' },
   ],
   bootstrap: [AppComponent]
 })
