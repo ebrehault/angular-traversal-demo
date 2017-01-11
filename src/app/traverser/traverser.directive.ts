@@ -24,7 +24,7 @@ export class TraverserOutlet implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.traverser.path.subscribe(location => this.render(location));
+    this.traverser.target.subscribe(target => this.render(target));
     this.traverser.traverse(this.location.path());
   }
 
@@ -34,13 +34,13 @@ export class TraverserOutlet implements OnInit {
     }
   }
 
-  render(location) {
+  render(target) {
     if(this.viewInstance) {
       this.viewInstance.destroy();
     }
-    if(location.component) {
+    if(target.component) {
       let componentFactory = this.resolver.resolveComponentFactory(
-        location.component);
+        target.component);
       this.viewInstance = this.container.createComponent(componentFactory);
     }
   }

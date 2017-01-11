@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Traverser } from '../traverser/traverser';
 
 @Component({
   selector: 'app-edit',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditComponent implements OnInit {
 
-  constructor() { }
+  private context: any;
+
+  constructor(private traverser: Traverser) { }
 
   ngOnInit() {
+    this.traverser.target.subscribe(target => {
+      this.context = target.context;
+    });
   }
 
 }

@@ -5,11 +5,11 @@ import { BehaviorSubject } from "rxjs/Rx";
 @Injectable()
 export class Traverser {
 
-  public path: BehaviorSubject<any>;
+  public target: BehaviorSubject<any>;
   private views = {};
 
   constructor(private location: Location) {
-    this.path = new BehaviorSubject({
+    this.target = new BehaviorSubject({
       context: {},
       path: '',
       view: 'view',
@@ -26,13 +26,13 @@ export class Traverser {
     }
     this.location.go(path);
     if(this.views[view]) {
-      let locationContext = {
+      let targetContext = {
         context: {type: 'balou'},
         path: path,
         view: view,
         component: this.views[view]['*'],
       };
-      this.path.next(locationContext);
+      this.target.next(targetContext);
     }
   }
 
