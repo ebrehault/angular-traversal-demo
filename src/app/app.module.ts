@@ -7,7 +7,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { EditComponent } from './edit/edit.component';
 import { ListComponent } from './list/list.component';
-import { TraverserComponent } from './traverser/traverser.component';
+import { TraverserOutlet } from './traverser/traverser.directive';
 import { TraverserLink } from './traverser/traverser.link';
 import { Traverser } from './traverser/traverser';
 
@@ -16,13 +16,17 @@ import { Traverser } from './traverser/traverser';
     AppComponent,
     EditComponent,
     ListComponent,
-    TraverserComponent,
+    TraverserOutlet,
     TraverserLink,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+  ],
+  entryComponents: [
+    EditComponent,
+    ListComponent,
   ],
   providers: [
     Location,
