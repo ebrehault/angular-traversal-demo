@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Traverser } from '../traverser/traverser';
+import { Traverser } from 'angular-traversal';
 
 @Component({
   selector: 'app-list',
