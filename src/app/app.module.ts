@@ -25,7 +25,7 @@ import { BasicHttpResolver, BACKEND_BASE_URL } from 'angular-traversal';
     BrowserModule,
     FormsModule,
     HttpModule,
-    TraversalModule.forRoot(),
+    TraversalModule,
   ],
   entryComponents: [
     EditComponent,
